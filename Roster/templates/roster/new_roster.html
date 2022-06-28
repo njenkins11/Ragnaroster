@@ -1,0 +1,10 @@
+{%extends "Roster.base.html%"%}
+
+{%block content%}
+<p> Add a new roster:</p>
+<form action="{% url 'wowraid:new_roster.html'%}" method='post'>
+    {%csrf_token%}
+    {{form.as_p}}
+    <button name = "submit"> Add Roster </button></form>
+
+{%endblock content%}

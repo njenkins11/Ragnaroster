@@ -1,0 +1,44 @@
+{% load static %}
+ 
+<style>
+  .greet{
+    font-size: 16px;
+    color: #fff;
+    margin-right: 20px;
+    align: "middle";
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark"  style = "position: fixed; width = 100%">
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+    <li>
+        <img src = "{%static '/images/logoR1.png'%}" alt="logo" align="center" width="40" height="40">
+    </li>   
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'wowraid:home' %}">Home</a>
+      </li>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'wowraid:rosters' %}">Rosters</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'wowraid:about' %}">About</a>
+      </li>
+    </ul>
+  </div>
+    {%if user.is_authenticated%}
+    <span>
+      <a class = "greet" href="{%url 'Users:login'%}">Hello, {{user.username}}. </a>
+    </span>
+    <span>
+      <a class="greet" href="{% url 'Users:logout' %}">Logout</a>
+    </span>
+    {%endif%}
+    <span>
+    <a class="btn btn-primary" href="{%url "social:begin" "battlenet-oauth2"%}">
+      <img src="{%static '/images/battlenet.png'%}" alt="" width="30" height="30"> Log In</a>
+   <!-- <a class = "greet" href="{% url 'Users:login'%}">Log in</a> -->
+    </span>
+
+</nav>

@@ -1,0 +1,50 @@
+{%extends "Roster/base.html"%}
+{%load static%}
+
+{%block content%}
+<head>
+    <link rel="stylesheet" href="{%static '/css/roster.css'%}"  type="text/css"/>
+</head>
+
+<div class = "introduction-container">
+    <h1> Rosters </h1>
+</div>
+    <table class = "roster-table">
+        <tr style="">
+            <th> Roster Name </th>
+            <th> Start Time </th>
+            <th> End Time </th>
+            <th> Guild </th>
+        </tr>
+        {% for r in roster%}
+        {%if r.faction == "Horde"%}
+            <tr style = "background-color: #ff0000">
+        {%elif r.faction == "Alliance"%}
+            <tr style = "background-color: blue">
+        {%else%}
+            <tr style = "background-color: #008000">
+        {%endif%}
+                <td>
+                    <a href="{% url 'wowraid:roster' r.roster_id%}">{{ r.name }}</a>
+                </td>
+                <td>
+                    {{r.start_time}} 
+                </td>
+                <td>
+                    {{r.end_time}}
+                </td>
+                {%if r.guild == ""%}
+                <td>
+                    N/A
+                </td>
+                {%else%}
+                <td>
+                    {{r.guild}}
+                </td>
+                {%endif%}
+            </tr>
+            {%empty%}
+                <li> No Rosters have been added </li>
+        {%endfor%}
+        </table>
+{%endblock content%}
